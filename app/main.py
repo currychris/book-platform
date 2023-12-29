@@ -49,8 +49,9 @@ def delete_user(username: str, jwt_token: str):
         return {"message": f"{username} does not exist"}
     del fake_db["users"][username]
     for book in fake_db["books"].values():
-        if book.author.username == username:
+        if book.author == username:
             del fake_db["books"][book.isbn]
+    del fake_db["sessions"][username]
     return {"message": f"{username} deleted"}
 
 
