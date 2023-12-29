@@ -81,6 +81,9 @@ def show_books(title: str = None, description: str = None,
     
     books = list(fake_db["books"].values())
 
+    if title is None and description is None and pseudonym is None:
+        return {"books": books}
+
     if title:
         books = search_books(title, "title", books)
     if description:
